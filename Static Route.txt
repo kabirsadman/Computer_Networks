@@ -1,0 +1,122 @@
+
+
+==================Dhaka============================
+
+Router>enable
+Router#configure terminal
+Router(config)#hostname Dhaka-Router
+
+Dhaka-Router(config)#interface gigabitethernet 0/0
+Dhaka-Router(config-if)#ip address 192.168.1.1 255.255.255.0
+Dhaka-Router(config-if)#no shutdown
+Dhaka-Router(config-if)#description To-Dhaka-LAN
+
+Dhaka-Router(config-if)#interface serial 0/0/0
+Dhaka-Router(config-if)#ip address 193.168.1.1 255.255.255.0
+Dhaka-Router(config-if)#no shutdown
+Dhaka-Router(config-if)#description To-Bogura
+
+Dhaka-Router(config-if)#interface serial 0/0/1
+Dhaka-Router(config-if)#ip address 199.168.1.2 255.255.255.0
+Dhaka-Router(config-if)#no shutdown
+Dhaka-Router(config-if)#description To-Rangpur
+
+Dhaka-Router(config)#ip route 194.168.1.0 255.255.255.0 193.168.1.2
+Dhaka-Router(config)#ip route 195.168.1.0 255.255.255.0 193.168.1.2
+Dhaka-Router(config)#ip route 196.168.1.0 255.255.255.0 193.168.1.2
+Dhaka-Router(config)#ip route 197.168.1.0 255.255.255.0 199.168.1.1
+Dhaka-Router(config)#ip route 198.168.1.0 255.255.255.0 199.168.1.1
+
+
+==================Bogura============================
+
+
+Router>
+Router>enable
+Router#configure terminal
+Router(config)#hostname Bogura-Router
+
+	
+Bogura-Router(config)#interface gigabitethernet 0/0
+Bogura-Router(config-if)#ip address 194.168.1.1 255.255.255.0
+Bogura-Router(config-if)#no shutdown
+Bogura-Router(config-if)#description To-Bogura-LAN
+
+Bogura-Router(config-if)#interface serial 0/0/1
+Bogura-Router(config-if)#ip address 193.168.1.2 255.255.255.0
+Bogura-Router(config-if)#no shutdown
+
+Bogura-Router(config-if)#interface serial 0/0/0
+Bogura-Router(config-if)#ip address 195.168.1.1 255.255.255.0
+Bogura-Router(config-if)#no shutdown
+Bogura-Router(config-if)#description To-Rajshahi
+
+Bogura-Router(config)#ip route 192.168.1.0 255.255.255.0 193.168.1.1
+Bogura-Router(config)#ip route 196.168.1.0 255.255.255.0 195.168.1.1
+%Invalid next hop address (it's this router)
+Bogura-Router(config)#ip route 196.168.1.0 255.255.255.0 195.168.1.2
+Bogura-Router(config)#ip route 197.168.1.0 255.255.255.0 195.168.1.2
+Bogura-Router(config)#ip route 198.168.1.0 255.255.255.0 195.168.1.2
+Bogura-Router(config)#ip route 199.168.1.0 255.255.255.0 193.168.1.1
+
+
+
+==================Rajshai============================
+
+Router>enable
+Router#configure terminal
+Router(config)#hostname Rajshahi-Router
+Rajshahi-Router(config)#interface serial 0/0/1
+Rajshahi-Router(config-if)#ip address 195.168.1.2 255.255.255.0
+Rajshahi-Router(config-if)#no shutdown
+Rajshahi-Router(config-if)#description To-Bogura
+
+Rajshahi-Router(config-if)#interface gigabitethernet 0/0
+Rajshahi-Router(config-if)#ip address 196.168.1.1 255.255.255.0
+Rajshahi-Router(config-if)#no shutdown
+Rajshahi-Router(config-if)#description To-Rajshahi-LAN
+
+Rajshahi-Router(config-if)#interface serial 0/0/0
+Rajshahi-Router(config-if)#ip address 197.168.1.1 255.255.255.0
+Rajshahi-Router(config-if)#no shutdown
+Rajshahi-Router(config-if)#description To-Rangpur
+
+Rajshahi-Router(config)#ip route 192.168.1.0 255.255.255.0 195.168.1.1
+Rajshahi-Router(config)#ip route 193.168.1.0 255.255.255.0 195.168.1.1
+Rajshahi-Router(config)#ip route 194.168.1.0 255.255.255.0 195.168.1.1
+Rajshahi-Router(config)#ip route 198.168.1.0 255.255.255.0 197.168.1.2
+Rajshahi-Router(config)#ip route 199.168.1.0 255.255.255.0 197.168.1.2
+
+
+==================Rangpur============================
+
+Router>enable
+Router#configure terminal
+
+Router(config)#hostname Rangpur-Router
+Rangpur-Router(config)#interface serial 0/0/1
+Rangpur-Router(config-if)#ip address 197.168.1.2 255.255.255.0
+Rangpur-Router(config-if)#no shutdown
+Rangpur-Router(config-if)#description To-Rajshai
+
+Rangpur-Router(config-if)#interface gigabitethernet 0/0
+Rangpur-Router(config-if)#ip address 198.168.1.1 255.255.255.0
+Rangpur-Router(config-if)#no shutdown
+Rangpur-Router(config-if)#description To-Rangpur-LAN
+
+Rangpur-Router(config-if)#interface serial 0/0/0
+Rangpur-Router(config-if)#ip address 199.168.1.1 255.255.255.0
+Rangpur-Router(config-if)#no shutdown
+Rangpur-Router(config-if)#description To-Dhaka
+
+Rangpur-Router(config)#ip route 192.168.1.0 255.255.255.0 199.168.1.2
+Rangpur-Router(config)#ip route 193.168.1.0 255.255.255.0 199.168.1.2
+Rangpur-Router(config)#ip route 194.168.1.0 255.255.255.0 199.168.1.2
+Rangpur-Router(config)#ip route 195.168.1.0 255.255.255.0 197.168.1.1
+Rangpur-Router(config)#ip route 196.168.1.0 255.255.255.0 197.168.1.1
+
+
+
+
+
+
